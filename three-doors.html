@@ -1,0 +1,1098 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Three Doors: A Capital Primer for Private Club Boards</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --ink: #18221e;
+      --soft-ink: #46534e;
+      --muted: #69746f;
+      --paper: #f6f4ed;
+      --white: #ffffff;
+      --line: #d8ded8;
+      --forest: #1f5a42;
+      --leaf: #3d765e;
+      --blue: #245089;
+      --gold: #a97a2c;
+      --rust: #9f5137;
+      --charcoal: #202626;
+      --wash: #edf2ec;
+      --shadow: 0 22px 60px rgba(24, 34, 30, 0.14);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.58;
+    }
+    a { color: inherit; text-decoration-color: rgba(31, 90, 66, 0.42); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--forest); }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero {
+      color: var(--white);
+      background: linear-gradient(120deg, #0e1a15 0%, #1f5a42 62%, #245089 135%);
+    }
+    .hero-inner { padding: 92px 0 64px; }
+    .hero h1 {
+      max-width: 950px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.03;
+      text-wrap: balance;
+    }
+    .hero p.sub {
+      max-width: 820px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.16rem;
+    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .hero-meta a, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      padding: 9px 14px;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.12);
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button.dark { color: var(--white); border-color: var(--forest); background: var(--forest); }
+    .button.light { color: var(--ink); border-color: var(--line); background: var(--white); }
+    .button.small { min-height: 36px; padding: 7px 11px; font-size: 0.88rem; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(246, 244, 237, 0.94);
+      backdrop-filter: blur(12px);
+    }
+    .nav .wrap { display: flex; gap: 18px; align-items: center; overflow-x: auto; padding: 12px 0; }
+    .nav a { color: var(--soft-ink); font-size: 0.86rem; font-weight: 800; white-space: nowrap; text-decoration: none; }
+    .nav a:hover { color: var(--forest); }
+    section { padding: 72px 0; }
+    .band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--white); }
+    .dark { color: var(--white); background: var(--charcoal); }
+    .dark .lead, .dark .muted { color: rgba(255, 255, 255, 0.74); }
+    .dark .card, .dark .memo { color: var(--ink); }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.55fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+    h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 3.1vw, 2.8rem); line-height: 1.08; text-wrap: balance; }
+    h3 { margin: 0 0 10px; font-size: 1.08rem; line-height: 1.3; }
+    h4 { margin: 0 0 8px; font-size: 0.95rem; }
+    p { margin: 0 0 14px; }
+    .lead { color: var(--soft-ink); font-size: 1.04rem; }
+    .muted { color: var(--muted); }
+    ul.clean { margin: 0 0 14px; padding-left: 19px; }
+    ul.clean li { margin-bottom: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card, .metric, .memo, .source, .calc-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(24, 34, 30, 0.03);
+    }
+    .metric { grid-column: span 3; padding: 22px; min-height: 168px; }
+    .metric strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--forest);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+    .metric span { display: block; color: var(--soft-ink); font-size: 0.92rem; }
+    .card { grid-column: span 4; padding: 24px; }
+    .card.wide { grid-column: span 6; }
+    .card.full { grid-column: 1 / -1; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      margin: 0 6px 14px 0;
+      border-radius: 999px;
+      padding: 3px 10px;
+      color: var(--forest);
+      background: var(--wash);
+      font-size: 0.73rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag.rust { color: var(--rust); background: #f7e8e1; }
+    .tag.blue { color: var(--blue); background: #e7eef7; }
+    .tag.gold { color: var(--gold); background: #fbf1dc; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin: 0 6px 14px 0;
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .badge.v-corr { background: var(--forest); }
+    .badge.v-comp { background: var(--gold); }
+    .badge.v-prim { background: var(--blue); }
+    .badge.v-illu { background: var(--muted); }
+    .badge.v-anti { background: var(--rust); }
+    .thesis { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(300px, 0.62fr); gap: 28px; align-items: stretch; }
+    .thesis-main { padding: 30px; border-radius: 8px; color: var(--white); background: var(--forest); }
+    .thesis-main h2 { color: var(--white); }
+    .thesis-main p { color: rgba(255, 255, 255, 0.86); font-size: 1.03rem; }
+    .thesis-side { padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
+    .door-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .door-num {
+      flex: 0 0 auto;
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--white);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .door-num.d1 { background: var(--rust); }
+    .door-num.d2 { background: var(--forest); }
+    .door-num.d3 { background: var(--blue); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
+    table { width: 100%; min-width: 780px; border-collapse: collapse; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 0.94rem; }
+    th { color: var(--soft-ink); background: #f0f3ed; font-size: 0.76rem; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .note { border-left: 4px solid var(--gold); padding: 14px 16px; border-radius: 0 8px 8px 0; color: #49391f; background: #fff8e8; margin: 0 0 14px; }
+    .note.forest { border-color: var(--forest); color: #1d3a2e; background: var(--wash); }
+    .note.rust { border-color: var(--rust); color: #4a2a1e; background: #f9ece6; }
+    .note.blue { border-color: var(--blue); color: #1e3352; background: #ecf1f8; }
+    .quotebox {
+      margin: 0 0 14px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--rust);
+      border-radius: 0 8px 8px 0;
+      background: #faf2ee;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.05rem;
+      color: #3d2a22;
+    }
+    .quotebox cite { display: block; margin-top: 8px; font-family: Inter, system-ui, sans-serif; font-style: normal; font-size: 0.82rem; color: var(--muted); }
+    .calc { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.72fr); gap: 22px; align-items: start; }
+    .calc-panel { padding: 22px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    label { display: grid; gap: 6px; color: var(--soft-ink); font-size: 0.85rem; font-weight: 800; }
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: var(--white);
+      font: inherit;
+    }
+    .result-list { display: grid; gap: 12px; margin-top: 16px; }
+    .result { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .result:last-child { border-bottom: 0; padding-bottom: 0; }
+    .result strong { font-family: Georgia, "Times New Roman", serif; font-size: 1.24rem; white-space: nowrap; }
+    .verdict {
+      display: inline-flex;
+      margin-top: 6px;
+      border-radius: 6px;
+      padding: 6px 14px;
+      color: var(--white);
+      background: var(--muted);
+      font-weight: 850;
+      font-size: 0.95rem;
+    }
+    .memo { padding: 24px; }
+    .memo pre { margin: 0; white-space: pre-wrap; color: var(--ink); font: 0.94rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .memo-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .source { padding: 18px; font-size: 0.9rem; }
+    .source strong { display: block; margin-bottom: 6px; }
+    .vote-wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .vote-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+    .vote-card .pct {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.3rem;
+      line-height: 1;
+      color: var(--rust);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .vote-card .club { font-weight: 850; font-size: 0.95rem; display: block; }
+    .vote-card .meta { color: var(--muted); font-size: 0.83rem; display: block; margin-top: 4px; }
+    .seq { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .seq-item { position: relative; min-height: 150px; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); }
+    .seq-item strong { display: block; margin-bottom: 8px; color: var(--rust); font-size: 0.95rem; }
+    .seq-item p { font-size: 0.88rem; margin: 0; }
+    .footer { padding: 32px 0 48px; color: var(--muted); font-size: 0.88rem; }
+    .footer strong { color: var(--soft-ink); }
+    @media (max-width: 980px) {
+      .section-head, .thesis, .calc { grid-template-columns: 1fr; }
+      .metric, .card, .card.wide { grid-column: 1 / -1; }
+      .vote-wall, .seq { grid-template-columns: repeat(2, 1fr); }
+      .source-grid, .form-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 28px, 1160px); }
+      section { padding: 54px 0; }
+      .vote-wall, .seq { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .nav, .hero-meta, .memo-actions, .button { display: none; }
+      body { background: #fff; }
+      .hero { color: var(--ink); background: #fff; }
+      .hero-inner { padding: 36px 0 14px; }
+      .hero p.sub { color: var(--soft-ink); }
+      section { padding: 34px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap hero-inner">
+      <p class="eyebrow" style="color:#f4c873;">A capital primer for private club boards</p>
+      <h1>The Three Doors: Sell, Raise, or Reprice</h1>
+      <p class="sub">Every private club is a depreciating asset funded by a membership that must be continuously re-sold. Sooner or later the capital bill arrives, and it exits through one of three doors. This primer shows how each door actually works, with named clubs, real votes, verified numbers, and the models a board can run with its own figures.</p>
+      <div class="hero-meta">
+        <a href="#door1">Door 1: Sell</a>
+        <a href="#door2">Door 2: Raise</a>
+        <a href="#door3">Door 3: Reprice</a>
+        <a href="#racquets">The Racquets Lens</a>
+        <button class="button light small" type="button" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Primer navigation">
+    <div class="wrap">
+      <a href="#thesis">Thesis</a>
+      <a href="#positions">Capital Positions</a>
+      <a href="#judges">The Three Judges</a>
+      <a href="#door1">Sell</a>
+      <a href="#door2">Raise</a>
+      <a href="#door3">Reprice</a>
+      <a href="#racquets">Racquets Lens</a>
+      <a href="#watch">What To Watch</a>
+      <a href="#memo">Board Memo</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- THESIS -->
+    <section id="thesis">
+      <div class="wrap">
+        <div class="thesis">
+          <article class="thesis-main">
+            <p class="eyebrow" style="color:#f4c873;">The Thesis</p>
+            <h2>A board cannot choose whether the club is underwritten. Only who does the underwriting.</h2>
+            <p>Wherever real demand exists for a club, three judges price it: the buyer if it sells, the lender and the membership if it raises capital, and the prospective member every single year regardless. Deferred capital does not disappear. It moves between these three prices until someone pays it.</p>
+            <p>Clubs rarely die at a single vote. They erode by sequence: debt taken at the top of a cycle, a shrinking and aging roster, assessments that recur until they read as a distress signal, and then a sale vote that passes almost unanimously, because by then selling is the relief.</p>
+          </article>
+          <aside class="thesis-side">
+            <h3>How this primer treats evidence</h3>
+            <p style="font-size:0.94rem;">Every material claim carries a label:</p>
+            <p style="font-size:0.9rem; margin-bottom:6px;"><span class="badge v-corr">Corroborated</span> confirmed by independent press or primary records</p>
+            <p style="font-size:0.9rem; margin-bottom:6px;"><span class="badge v-comp">Company-reported</span> from an interested party's own materials, unconfirmed elsewhere</p>
+            <p style="font-size:0.9rem; margin-bottom:6px;"><span class="badge v-prim">Primary framework</span> an industry firm's own published standard</p>
+            <p style="font-size:0.9rem; margin-bottom:0;"><span class="badge v-illu">Illustrative</span> a model to run with your club's numbers, not a promise</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPITAL POSITIONS -->
+    <section class="band" id="positions">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Capital Positions</p>
+            <h2>Your capital position is measured, not felt.</h2>
+          </div>
+          <p class="lead">Depreciation is the future arriving on schedule. The industry's own benchmarking says most clubs generate less capital than they consume, and the club that feels fine is often the one quietly consuming its own asset base.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="tag">Investing</span>
+            <h3>Capital income exceeds depreciation.</h3>
+            <p class="muted">The physical plant is renewed as fast as it wears. Member value compounds, and the club walks into any examination prepared.</p>
+          </article>
+          <article class="card">
+            <span class="tag gold">Coasting</span>
+            <h3>Capital income trails depreciation.</h3>
+            <p class="muted">Nothing looks wrong yet. The club is consuming its asset base in place, and the gap accrues silently as next decade's backlog.</p>
+          </article>
+          <article class="card">
+            <span class="tag rust">Starved</span>
+            <h3>The deferred bill has come due.</h3>
+            <p class="muted">Capital needs now exceed what the membership can or will fund. From here, someone else sets the price.</p>
+          </article>
+
+          <article class="card full">
+            <span class="badge v-prim">Primary framework</span>
+            <h3>The benchmarks a finance committee can adopt tomorrow.</h3>
+            <ul class="clean">
+              <li><strong>Bare minimum:</strong> generate capital income at least equal to annual depreciation before funding aspirational projects. Club Benchmarking, March 2022.<sup><a href="#src-cb-dep">9</a></sup></li>
+              <li><strong>Sustainability floor:</strong> a Net Capital Available Ratio (net capital available divided by operating revenue) of approximately 12 percent. The fiscal 2014 industry median was 11 percent, meaning the median club sat below the line. Club Benchmarking, June 2015.<sup><a href="#src-cb-kpi">10</a></sup></li>
+              <li><strong>Current recommended target:</strong> Club Benchmarking's more recent Capital KPIs guidance points to roughly 17 percent, based on its database of over 1,000 clubs. Publication date of the 17 percent figure needs confirmation before quoting it in a board packet.<sup><a href="#src-cb-kpi">10</a></sup></li>
+            </ul>
+            <p class="muted" style="margin:0;">Use reserve-study economics, not book depreciation, and measure over a rolling five-to-ten-year window. A snapshot taken the year after a renovation will misclassify a healthy club.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREE JUDGES -->
+    <section id="judges">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">The Three Judges</p>
+            <h2>Same club. Three prices. One deferred bill.</h2>
+          </div>
+          <p class="lead">The buyer and the lender are dormant judges who wake when summoned. The prospective member is a sitting judge who rules every year, because attrition means every club is perpetually selling memberships whether the board notices or not.</p>
+        </div>
+
+        <div class="table-wrap" role="region" aria-label="The three judges">
+          <table>
+            <thead>
+              <tr>
+                <th>Judge</th>
+                <th>When they price you</th>
+                <th>How deferred capex shows up</th>
+                <th>What amenity condition signals</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>The buyer</strong></td>
+                <td>The day an offer letter arrives</td>
+                <td>Debt payoff plus the capex they must commit is subtracted from what members receive</td>
+                <td>The turnaround story they will sell your own members</td>
+              </tr>
+              <tr>
+                <td><strong>The lender and the vote</strong></td>
+                <td>Every capital campaign and refinancing</td>
+                <td>Reserve studies, coverage ratios, and whether members trust the plan enough to approve it</td>
+                <td>Whether the last funded project delivered, which is next vote's collateral</td>
+              </tr>
+              <tr>
+                <td><strong>The prospective member</strong></td>
+                <td>Every tour, every year</td>
+                <td>Priced silently into what initiation and dues they will accept versus the club down the road</td>
+                <td>The visible answer to "is this club alive"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOOR 1: SELL -->
+    <section class="band" id="door1">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="door-head">
+              <span class="door-num d1">1</span>
+              <p class="eyebrow" style="margin:0;">Door One</p>
+            </div>
+            <h2>Sell: the vote is nearly unanimous by the time it happens.</h2>
+          </div>
+          <p class="lead">The most misunderstood fact about clubs that sell is how the members felt on the day of the vote. Not defeated. Relieved. Four cases, four landslides.</p>
+        </div>
+
+        <div class="vote-wall" aria-label="Sale vote results">
+          <div class="vote-card">
+            <span class="pct">167 to 9</span>
+            <span class="club">Capital City CC, Tallahassee FL</span>
+            <span class="meta">April 2026. Investor group led by Patrick Zalupski. Local news confirmed the vote, the fees-or-sell letter, and a roughly $30M redevelopment pledge.</span>
+            <span class="badge v-corr" style="margin-top:10px;">Corroborated</span>
+          </div>
+          <div class="vote-card">
+            <span class="pct">~97%</span>
+            <span class="club">Wisconsin Country Club, Milwaukee WI</span>
+            <span class="meta">June 2023. Deal and rationale confirmed by BizTimes ($6.3M total, $1.3M dam repairs, over $3M debt retired). The 97% figure itself appears only in the buyer's release.</span>
+            <span class="badge v-corr" style="margin-top:10px;">Deal corroborated</span>
+          </div>
+          <div class="vote-card">
+            <span class="pct">Unanimous</span>
+            <span class="club">Blue Hill CC, Canton MA</span>
+            <span class="meta">December 2015. Local press reported unanimous ratification; the buyer's own case study says 16 to 1. When accounts differ, this primer shows both.</span>
+            <span class="badge v-corr" style="margin-top:10px;">Corroborated, detail conflict</span>
+          </div>
+          <div class="vote-card">
+            <span class="pct">~90%</span>
+            <span class="club">White Manor CC, Malvern PA</span>
+            <span class="meta">Vote December 2016, closed December 31, 2016. Vote held and deal confirmed by the Philadelphia Inquirer; the 90% figure appears only in buyer materials.</span>
+            <span class="badge v-comp" style="margin-top:10px;">Vote % company-reported</span>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:44px;">
+          <div>
+            <h2 style="font-size:clamp(1.5rem,2.2vw,2rem);">The sequence that ends in a landslide.</h2>
+          </div>
+          <p class="lead">No club sells because of one bad year. The pattern in the record is a sequence, and a board can locate itself on it years before a buyer does.</p>
+        </div>
+
+        <div class="seq" aria-label="The erosion sequence">
+          <div class="seq-item">
+            <strong>1. Boom-era debt</strong>
+            <p>White Manor borrowed roughly $6M for a 2003 course renovation. Blue Hill borrowed about $6M for a 2012 clubhouse project. Both loans were taken in confident years.</p>
+          </div>
+          <div class="seq-item">
+            <strong>2. The roster thins</strong>
+            <p>Membership decline shrinks the base that must carry the debt. Blue Hill's decline is company-reported; Wisconsin's City Club lost roughly 300 members during COVID per BizTimes.</p>
+          </div>
+          <div class="seq-item">
+            <strong>3. Capital talk turns toxic</strong>
+            <p>Recurring assessments and stalled projects poison the room. At Blue Hill, a board member said capital discussions "got so contentious that we never even voted." White Manor entered its final year deferring roughly $317,000 of planned capital projects on $155,000 of operating income (company-reported).</p>
+          </div>
+          <div class="seq-item">
+            <strong>4. The relief vote</strong>
+            <p>A buyer offers to retire the debt, fund the projects, and end the assessments. The vote passes in a landslide, because by then selling feels like rescue.</p>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:32px;">
+          <article class="card wide">
+            <span class="badge v-corr">Corroborated</span>
+            <h3>What the buyer is actually screening for.</h3>
+            <p>Concert Golf Partners, the most active recapitalizer of member-owned clubs, publishes its own criteria: existing debt that blocks reinvestment, and member assessments that have become recurring. Its model is to retire all club debt, fund capital improvements, and take over management, in exchange for ownership. All three claims verified 3-0 against its published materials.</p>
+            <p class="muted" style="margin:0;">Read that carefully: the funding mechanism boards reach for most readily, the recurring assessment, is simultaneously the signal that puts a club on an acquirer's list.</p>
+          </article>
+          <article class="card wide">
+            <span class="badge v-corr">Corroborated</span>
+            <h3>What members argue about once it is too late.</h3>
+            <p>At White Manor, a bondholder objected that the roughly $46,000 per acre sale price undervalued land worth about $88,000 per acre nearby, and urged delaying the vote to explore local ownership. The sale closed anyway.</p>
+            <p class="muted" style="margin:0;">The lesson is not that he was right about the price. It is that by the time a club reaches the sale table, members are negotiating the terms of the exit rather than the direction of the club.</p>
+          </article>
+        </div>
+
+        <blockquote class="quotebox">
+          "It ends our debt challenges and ends our longstanding internal debates about funding capital projects."
+          <cite>Jim Marano, club president, Blue Hill Country Club, on the sale. Reported independently, 2016.</cite>
+        </blockquote>
+
+        <div class="note rust">
+          <strong>The honest counter-case: Oakland Hills.</strong> In July 2016 the membership rejected an $11M dues-funded course restoration. The club did not spiral toward a sale. The board revised the plan, won a 79 percent yes vote on a roughly $12M version, delivered the course in 2021, and the same membership later approved a clubhouse rebuild that grew past $104M after the 2022 fire. Still member-owned. A failed vote is a warning marker on the sequence, not a death sentence. What separates Oakland Hills from White Manor is demand depth, member wealth, and a board that revised and returned instead of assessing and retreating. All independently reported by Crain's Detroit Business and The Detroit News.
+        </div>
+
+        <!-- MODEL 1 -->
+        <div class="section-head" style="margin-top:44px;">
+          <div>
+            <h2 style="font-size:clamp(1.5rem,2.2vw,2rem);">Model: what a buyer must underwrite, versus what members would pay to stay owners.</h2>
+          </div>
+          <p class="lead"><span class="badge v-illu">Illustrative</span> Deferred capital is paid either by members over time or by a buyer in exchange for ownership. This model puts both numbers side by side. Use your club's figures.</p>
+        </div>
+
+        <div class="calc">
+          <div class="calc-panel">
+            <div class="form-grid">
+              <label>Outstanding club debt ($)
+                <input id="m1debt" type="number" min="0" step="100000" value="5000000">
+              </label>
+              <label>Deferred capital backlog ($)
+                <input id="m1backlog" type="number" min="0" step="100000" value="4000000">
+              </label>
+              <label>Full member equivalents
+                <input id="m1members" type="number" min="1" step="10" value="350">
+              </label>
+              <label>Years to self-fund the backlog
+                <input id="m1years" type="number" min="1" step="1" value="10">
+              </label>
+            </div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.85rem;">Debt figures in the named cases: White Manor about $6M borrowed in 2003 (Inquirer), Blue Hill about $6M borrowed in 2012 (Canton Citizen), Wisconsin over $3M retired at sale (BizTimes).</p>
+          </div>
+          <aside class="calc-panel">
+            <h3>The two prices of the same bill</h3>
+            <div class="result-list">
+              <div class="result">
+                <span>Total a buyer must underwrite (debt plus backlog)</span>
+                <strong id="m1buyer">$9,000,000</strong>
+              </div>
+              <div class="result">
+                <span>What that buys the buyer</span>
+                <strong style="font-size:1rem;">The club</strong>
+              </div>
+              <div class="result">
+                <span>Self-funding the backlog: per member, per month</span>
+                <strong id="m1monthly">$95</strong>
+              </div>
+              <div class="result">
+                <span>Self-funding backlog plus debt: per member, per month</span>
+                <strong id="m1monthlyAll">$214</strong>
+              </div>
+            </div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.86rem;">In the recorded cases, memberships that declined structured monthly funding for years ultimately transferred ownership to a buyer who spent the same money. The monthly number members refuse is the price of the club they give up.</p>
+          </aside>
+        </div>
+
+        <div class="grid" style="margin-top:26px;">
+          <article class="card full">
+            <span class="tag rust">Board checklist</span>
+            <h3>Reading an unsolicited offer.</h3>
+            <ul class="clean" style="margin-bottom:0;">
+              <li>Separate the three components: debt retired, capex committed, and consideration to members. The first two are the buyer paying your deferred bill; only the third is new value.</li>
+              <li>Ask what contractual protections survive closing: use covenants (Capital City secured a golf-course requirement), legacy member rates, and for how long. White Manor's golf commitment was reported at seven years.</li>
+              <li>Get the land appraised independently before the vote, not after. The White Manor dissent came too late to matter.</li>
+              <li>Price the alternative honestly: run the model above and put the monthly self-funding number next to the offer, so members choose with both prices visible.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOOR 2: RAISE -->
+    <section id="door2">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="door-head">
+              <span class="door-num d2">2</span>
+              <p class="eyebrow" style="margin:0;">Door Two</p>
+            </div>
+            <h2>Raise: the funding stack is the strategy.</h2>
+          </div>
+          <p class="lead">Staying member-owned is a financing discipline, not a sentiment. The clubs that hold the door shut fund capital structurally, so no single project ever requires the vote that breaks the room.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="badge v-prim">Primary framework</span>
+            <h3>Dues pay the bills.</h3>
+            <p class="muted">GGA Partners, January 2025: monthly dues should be used to pay the club's bills. Operations, not capital. A dues increase cannot fix a capital problem.</p>
+          </article>
+          <article class="card">
+            <span class="badge v-prim">Primary framework</span>
+            <h3>Joining fees fund the machine.</h3>
+            <p class="muted">Joining fees paid by incoming members fund capital asset replacements first. Club Benchmarking notes initiation fees are the most common capital income source, and their volatility is why many clubs struggle.</p>
+          </article>
+          <article class="card">
+            <span class="badge v-prim">Primary framework</span>
+            <h3>Debt and assessments are the fallbacks.</h3>
+            <p class="muted">When joining fees are inadequate, clubs turn to debt, capital calls on members, or a combination. And recurring assessments are precisely what acquirers screen for.</p>
+          </article>
+
+          <article class="card full">
+            <span class="badge v-prim">Primary framework</span>
+            <h3>How member-owned clubs actually fund capital right now.</h3>
+            <p>The GGA Partners and National Club Association board study (reported November 2025): 66 percent of clubs fund capital through entrance fees, 65 percent through capital dues, 50 percent through special assessments, and 40 percent are willing to use debt. 71 percent require a formal member vote for capital projects. The discipline gap: 61 percent have a capital reserve study, but only 35 percent have a current strategic plan, reserve study, and facility master plan together, and 60 percent either have no capital reserve or share it with the maintenance budget.</p>
+            <p class="muted" style="margin:0;">The tools are common. The discipline is rare. A board that simply maintains all three documents and walls off its reserve is already operating ahead of roughly two thirds of its peers.</p>
+          </article>
+
+          <article class="card full">
+            <span class="badge v-corr">Corroborated</span>
+            <h3>The vote playbook, from the club that failed one and then didn't.</h3>
+            <p>Oakland Hills rejected an $11M restoration in July 2016. The plan asked members to fund it through increased dues and close the South Course for 14 months. The board did not retreat into assessments or deferral. It revised scope and funding, returned, and won 79 percent approval for a roughly $12M plan. The delivered course reopened in 2021, and delivery became the collateral for every vote since, up to and including a nine-figure clubhouse rebuild.</p>
+            <ul class="clean" style="margin-bottom:0;">
+              <li><strong>Failed votes are usually funding-structure votes, not project votes.</strong> The membership did not hate the restoration; it declined that particular way of paying for it.</li>
+              <li><strong>Revise and return beats defer and decay.</strong> The second vote came with tightened scope and a clearer case.</li>
+              <li><strong>Delivered projects compound trust.</strong> Each completed project made the next, larger vote easier, the exact opposite of the erosion sequence behind Door 1.</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- MODEL 2 -->
+        <div class="section-head" style="margin-top:44px;">
+          <div>
+            <h2 style="font-size:clamp(1.5rem,2.2vw,2rem);">Model: the capital health diagnostic.</h2>
+          </div>
+          <p class="lead"><span class="badge v-illu">Illustrative</span> Three inputs from your latest financials place the club in one of the three capital positions and size the silent annual gap. Thresholds follow Club Benchmarking's published framework; position bands are this primer's simplification.</p>
+        </div>
+
+        <div class="calc">
+          <div class="calc-panel">
+            <div class="form-grid">
+              <label>Annual operating revenue ($)
+                <input id="m2rev" type="number" min="1" step="100000" value="12000000">
+              </label>
+              <label>Annual capital income ($, net initiation + capital dues + other)
+                <input id="m2capinc" type="number" min="0" step="50000" value="1100000">
+              </label>
+              <label>Annual depreciation or reserve requirement ($)
+                <input id="m2dep" type="number" min="1" step="50000" value="1400000">
+              </label>
+              <label>Projection window (years)
+                <input id="m2yrs" type="number" min="1" step="1" value="10">
+              </label>
+            </div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.85rem;">Use reserve-study numbers where available. Book depreciation understates clubs with old, fully depreciated assets and overstates freshly renovated ones.</p>
+          </div>
+          <aside class="calc-panel">
+            <h3>Position readout</h3>
+            <div class="result-list">
+              <div class="result">
+                <span>Capital income vs depreciation</span>
+                <strong id="m2ratio">0.79x</strong>
+              </div>
+              <div class="result">
+                <span>Capital income as % of operating revenue<br><span class="muted" style="font-size:0.8rem;">vs 12% floor and 17% target (Club Benchmarking)</span></span>
+                <strong id="m2nac">9.2%</strong>
+              </div>
+              <div class="result">
+                <span>Annual capital gap</span>
+                <strong id="m2gap">$300,000</strong>
+              </div>
+              <div class="result">
+                <span>Projected backlog at window end</span>
+                <strong id="m2backlog">$3,000,000</strong>
+              </div>
+            </div>
+            <div class="verdict" id="m2verdict">Coasting</div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.86rem;">The 2014 industry median sat at 11 percent, below the 12 percent floor. If your club is at the median, this readout is the warning it never received.</p>
+          </aside>
+        </div>
+
+        <div class="grid" style="margin-top:26px;">
+          <article class="card full">
+            <span class="tag">Board checklist</span>
+            <h3>Sequencing a capital campaign that survives the vote.</h3>
+            <ul class="clean" style="margin-bottom:0;">
+              <li>Adopt the funding stack formally before proposing any project: dues for operations, joining fees and capital dues for replacement capital, debt sized to survive a downturn, assessments reserved for true one-time events.</li>
+              <li>Publish the capital health readout annually. A membership that has watched the gap for three years does not need convincing in year four.</li>
+              <li>Phase visibly: deliver a small project, then ask for the bigger one. Oakland Hills' 79 percent came after revision; its nine-figure votes came after delivery.</li>
+              <li>Never let an assessment recur. Once it becomes annual, it reads as distress to members and buyers alike.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOOR 3: REPRICE -->
+    <section class="band" id="door3">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="door-head">
+              <span class="door-num d3">3</span>
+              <p class="eyebrow" style="margin:0;">Door Three</p>
+            </div>
+            <h2>Reprice: the prospect is the judge who never adjourns.</h2>
+          </div>
+          <p class="lead">Attrition means every club sells memberships every year. Initiation and dues are set by what the next member will pay, and the next member tours the physical plant before reading the fee schedule. Amenity condition is the collateral behind the price.</p>
+        </div>
+
+        <div class="grid" style="margin-bottom:18px;">
+          <article class="metric">
+            <strong>$29K to $50K</strong>
+            <span>Median US club initiation fee, 2019 to 2022, a 72 percent rise. Club Benchmarking data via Front Office Sports, August 2025. A second series attributed to Club + Resort Business puts 2019 at $25K reaching $50K by 2024; both converge at about $50K today.</span>
+          </article>
+          <article class="metric">
+            <strong>5%</strong>
+            <span>The dues "new normal": median operating dues increase for 2024 through planned 2026, after 9 percent in 2022 to 2023. Club Benchmarking survey of hundreds of clubs, reported by Golf.com, late 2025.</span>
+          </article>
+          <article class="metric">
+            <strong>~1 in 2</strong>
+            <span>Share of clubs with a waitlist: 45 percent in 2025 per Club Benchmarking. A separate series reports 51 percent in 2024 versus 25 percent in 2019. Different surveys; cited separately.</span>
+          </article>
+          <article class="metric">
+            <strong>+12.5%</strong>
+            <span>Average planned capital dues increase, double the operating dues rate, as clubs shift capital funding onto structural footing. GGA Partners with CMAA, August 2024.</span>
+          </article>
+        </div>
+
+        <div class="grid">
+          <article class="card wide">
+            <span class="badge v-corr">Corroborated</span>
+            <h3>The escalation era is measured, and it is decelerating.</h3>
+            <p>GGA Partners' August 2024 survey with CMAA: initiation fees rose 8.7 percent on average (average fee $58K, median $34K) and operating dues 6.2 percent, both decelerating from the prior year. At the elite end the anecdotes run far ahead of the medians: La Gorce at a reported $1 million initiation with a years-long waitlist (Fortune, August 2024) and Apogee at up to $650,000 (Front Office Sports, August 2025). NGF reports private club membership up roughly 50 percent since 2019 with facilities approaching capacity.</p>
+            <p class="muted" style="margin:0;">The deceleration is the strategic point. When 9 percent increases fade to a 5 percent normal and waitlist share drifts down from its peak, pricing power stops being cycle-wide and starts being earned club by club. The next increase gets defended by collateral, and the collateral is the capital plan.</p>
+          </article>
+          <article class="card wide">
+            <span class="tag blue">The mechanism</span>
+            <h3>What the club actually sells is future dues streams.</h3>
+            <p>A membership sold to a 45-year-old household is a decades-long dues stream plus a family's activity. The same membership sold to a 68-year-old is a fraction of that. The age of the incoming cohort is the club's real revenue forecast, and amenity mix is the strongest lever a board holds over who applies.</p>
+            <p class="muted" style="margin:0;">The claim that racquets shifts the incoming cohort younger is an inference until your club measures it. The model below shows why it is worth measuring.</p>
+          </article>
+        </div>
+
+        <!-- MODEL 3 -->
+        <div class="section-head" style="margin-top:44px;">
+          <div>
+            <h2 style="font-size:clamp(1.5rem,2.2vw,2rem);">Model: what a younger joining cohort is worth.</h2>
+          </div>
+          <p class="lead"><span class="badge v-illu">Illustrative</span> Nominal lifetime dues by joining age, before any dues growth or discounting. Deliberately conservative: it excludes initiation, spend, and guest revenue entirely.</p>
+        </div>
+
+        <div class="calc">
+          <div class="calc-panel">
+            <div class="form-grid">
+              <label>Annual dues per household ($)
+                <input id="m3dues" type="number" min="0" step="1000" value="18000">
+              </label>
+              <label>Typical resignation age
+                <input id="m3exitage" type="number" min="40" max="100" step="1" value="75">
+              </label>
+              <label>Current average joining age
+                <input id="m3agenow" type="number" min="25" max="90" step="1" value="58">
+              </label>
+              <label>Target average joining age
+                <input id="m3agetarget" type="number" min="25" max="90" step="1" value="50">
+              </label>
+              <label>New member households per year
+                <input id="m3newpery" type="number" min="1" step="1" value="15">
+              </label>
+            </div>
+          </div>
+          <aside class="calc-panel">
+            <h3>Cohort value readout</h3>
+            <div class="result-list">
+              <div class="result">
+                <span>Lifetime dues, member joining at current average age</span>
+                <strong id="m3ltnow">$306,000</strong>
+              </div>
+              <div class="result">
+                <span>Lifetime dues, member joining at target age</span>
+                <strong id="m3lttarget">$450,000</strong>
+              </div>
+              <div class="result">
+                <span>Value difference per household</span>
+                <strong id="m3diff">$144,000</strong>
+              </div>
+              <div class="result">
+                <span>Difference across one year's intake</span>
+                <strong id="m3yeardiff">$2,160,000</strong>
+              </div>
+            </div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.86rem;">If an amenity investment plausibly shifts joining age by even a few years, the dues mathematics alone can dwarf the project cost. That is a reason to measure applicant demographics, not a reason to skip the measurement.</p>
+          </aside>
+        </div>
+
+        <div class="grid" style="margin-top:26px;">
+          <article class="card full">
+            <span class="tag blue">Board checklist</span>
+            <h3>Raising fees without spending trust.</h3>
+            <ul class="clean" style="margin-bottom:0;">
+              <li>Sequence matters: visible investment first, or announced simultaneously. A fee increase against a tired plant reads as extraction; against a live capital plan it reads as positioning.</li>
+              <li>Track waitlist depth and applicant age as standing board metrics. They are your pricing power and your future dues base, respectively.</li>
+              <li>Tie the increase letter to the capital plan explicitly: what was delivered, what is next, what the increase protects. Members accept prices they can see the collateral behind.</li>
+              <li>Watch the cycle. Fee power built in a demand boom evaporates fastest at clubs whose amenities were coasting through it.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RACQUETS LENS -->
+    <section class="dark" id="racquets">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#f4c873;">The Racquets Lens</p>
+            <h2>Where racquet sports actually fit, door by door.</h2>
+          </div>
+          <p class="lead">Not "the highest engagement per dollar." That claim does not survive scrutiny without club-level data. What survives: courts are among the cheapest visible, high-frequency engagement builders a club can add, and the acquirers repositioning purchased clubs are adding them.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="tag rust">Door 1</span>
+            <h3>Buyers build what boards deferred.</h3>
+            <p class="muted">Concert Golf named pickleball among planned investments at Wisconsin Country Club (company-reported), and its Fountains buildout centered a 12-court racquets complex (company-reported). PE repositioning playbooks are a revealed preference: the buyer spends on visible engagement first.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Door 2</span>
+            <h3>Small, phaseable, and visible wins votes.</h3>
+            <p class="muted">Court projects cost a fraction of clubhouse work, phase naturally, and every member walks past them. One tennis court converts to four pickleball courts (BoardRoom Magazine, 2025). That is the profile of capital that passes: modest ask, visible delivery, trust compounded for the next vote.</p>
+          </article>
+          <article class="card">
+            <span class="tag blue">Door 3</span>
+            <h3>Household reach is the recruiting story.</h3>
+            <p class="muted">Racquets serves spouses, juniors, and social members golf alone does not reach. Whether it shifts your applicant age is measurable within a season of programming. Measure it, then let the cohort model price it.</p>
+          </article>
+
+          <article class="card wide">
+            <span class="badge v-prim">Primary framework</span>
+            <h3>The demand signal is already inside the survey data.</h3>
+            <p class="muted" style="margin:0;">In GGA's August 2024 survey, club leaders named pickleball the second most over-capacity amenity at 41 percent, behind only golf at 50 percent, and pickleball sits among the top planned capital projects at 28 percent of clubs. SFIA counted 19.8 million US pickleball players in 2024, up 46 percent in a year. National numbers justify studying your club's demand. They never substitute for it.</p>
+          </article>
+          <article class="card wide">
+            <span class="badge v-corr">Corroborated</span>
+            <h3>Courts are being run as revenue lines, not just amenities.</h3>
+            <p class="muted" style="margin:0;">Turnberry Isle (Aventura FL) opened three pickleball and two padel courts in December 2025 with paid, pre-booked access: $40 per 90-minute reservation, $15 per hour guest rate, lessons at $35 per half hour. Club + Resort Business and the operator's release, December 2025. For a board, that is a working template for court programming that carries its own operating math.</p>
+          </article>
+
+          <article class="card full">
+            <span class="tag gold">Read this before believing any of it</span>
+            <h3>Who benefits if your board believes this primer.</h3>
+            <p>Court builders profit when clubs build courts, including the company behind this resource. Private equity buyers profit when boards conclude member ownership cannot fund capital. Consultants profit from the studies in between. None of that makes the evidence above false, but it means a board should discount every recommendation by its source's interest, this one included.</p>
+            <p style="margin-bottom:0;">The protection is procedural: demand utilization data from comparable clubs rather than national participation statistics, take multiple bids, phase commitments, and measure demand at your own club before building anything. Advice that survives those four filters is worth acting on regardless of who offered it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT TO WATCH -->
+    <section id="watch">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Falsification</p>
+            <h2>What would prove this primer wrong.</h2>
+          </div>
+          <p class="lead">A thesis that cannot name its own kill conditions is marketing. These are the tripwires a board should watch.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card wide">
+            <h3>On capital positions</h3>
+            <p class="muted">If clubs persistently below the capital-income-versus-depreciation line show no deterioration in member metrics or asset condition over ten years, the framework fails. Watch reserve studies against condition audits.</p>
+          </article>
+          <article class="card wide">
+            <h3>On the three judges</h3>
+            <p class="muted">If fee attainment and sale outcomes show no relationship to amenity condition across a full demand cycle, the underwriting lens fails. The test arrives when the current waitlist era ends, not before.</p>
+          </article>
+          <article class="card wide">
+            <h3>On the erosion sequence</h3>
+            <p class="muted">If most clubs that fail a major capital vote remain healthy and member-owned five years later, the sequence overstates the risk. Oakland Hills is the live counter-example; the base rate is the open question.</p>
+          </article>
+          <article class="card wide">
+            <h3>On racquets</h3>
+            <p class="muted">If court reservation data 24 months after a build shows low sustained utilization, or the applicant age mix does not move, the recruitment claim is dead at that club regardless of national statistics.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOARD MEMO -->
+    <section class="dark" id="memo">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" style="color:#f4c873;">Board Memo</p>
+            <h2>The one-page version for the board packet.</h2>
+          </div>
+          <p class="lead">Copy it, put your club's numbers in the diagnostic, and attach both.</p>
+        </div>
+
+        <article class="memo">
+          <pre id="boardMemo">A private club is a depreciating asset funded by a membership that must be continuously re-sold. Wherever demand for the club is real, three judges price it: a buyer if it sells, the lender and the membership if it raises capital, and the prospective member every year regardless. The board cannot choose whether the club is underwritten, only who does the underwriting and how prepared the club is when it happens.
+
+Our capital position is measurable. The industry benchmark is simple: capital income should at least equal annual depreciation, and net capital available should reach roughly 12 percent of operating revenue as a floor, with current guidance pointing meaningfully higher. The industry median has historically sat below the floor. We should assume we are the median until our own numbers prove otherwise, and we should publish that readout to the finance committee annually.
+
+The record on clubs that sold is consistent. The sequence was debt taken in confident years, a thinning roster, capital discussions that turned contentious or stopped happening, assessments that became recurring, and then a sale vote that passed in a landslide: 167 to 9 in Tallahassee in 2026, near-unanimous outcomes in Milwaukee, Canton, and Malvern before it. Members did not lose those clubs in the sale vote. They lost them years earlier, one deferred project at a time. The acquirers say plainly what they screen for: debt that blocks reinvestment and assessments that recur.
+
+The record also shows the alternative. Oakland Hills failed an eleven million dollar vote in 2016, revised the plan, passed twelve million at 79 percent, delivered, and has since funded over one hundred million more, still member-owned. Failed votes are survivable. Unstructured capital funding is what kills.
+
+Our funding stack should therefore be formal policy: dues fund operations, joining fees and capital dues fund replacement capital, debt is sized to survive a downturn, and assessments are reserved for true one-time events, never recurring. Amenity investment, racquets included, should be evaluated as what it is: among the cheapest visible engagement capital available, with demand measured at our club before we commit, phased so each delivery builds trust for the next vote, and judged by whether it moves utilization, retention, and the age of our incoming cohort.</pre>
+          <div class="memo-actions">
+            <button class="button dark small" type="button" data-copy="#boardMemo">Copy Memo</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SOURCES -->
+    <section id="sources">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Sources</p>
+            <h2>Citations, checked June 2026.</h2>
+          </div>
+          <p class="lead">Verification status is shown per source. Company-reported items come from an interested party and are labeled wherever used. Pair this primer with your club's own reserve study, utilization data, and member survey before formal board use.</p>
+        </div>
+
+        <div class="source-grid">
+          <article class="source" id="src-wctv">
+            <strong>1. WCTV Tallahassee, April 2, 2026</strong>
+            <a href="https://www.wctv.tv/2026/04/02/capital-city-country-club-votes-transfer-control-private-investors-including-tampa-bay-rays-owner/" target="_blank" rel="noreferrer">Capital City Country Club votes to transfer control</a>
+            <p class="muted">167-9 vote, Zalupski group, fees-or-sell letter, legacy rates, golf covenant. Corroborated by WTXL and Tallahassee Democrat coverage, including the roughly $30M pledge.</p>
+          </article>
+          <article class="source" id="src-biztimes">
+            <strong>2. BizTimes Milwaukee, June 23, 2023</strong>
+            <a href="https://biztimes.com/with-sale-of-golf-course-wisconsin-club-could-gain-more-financial-stability/" target="_blank" rel="noreferrer">Wisconsin Club sale and financial stability</a>
+            <p class="muted">$6.3M total consideration, $1.3M dam repairs, over $3M City Club debt retired, roughly $1.8M committed projects, membership figures.</p>
+          </article>
+          <article class="source" id="src-inquirer">
+            <strong>3. Philadelphia Inquirer, February 3, 2017</strong>
+            <a href="https://www.inquirer.com/philly/blogs/inq-phillydeals/Golf-courses-sold-DuPont-White-Manor-Philmont-Concert-Golf.html" target="_blank" rel="noreferrer">Golf courses sold: White Manor and Concert Golf</a>
+            <p class="muted">2003 renovation debt retired at closing, over $1M immediate upgrades, seven-year golf commitment, deal closed December 31, 2016.</p>
+          </article>
+          <article class="source" id="src-canton">
+            <strong>4. Canton Citizen, March 18, 2016</strong>
+            <a href="https://www.thecantoncitizen.com/2016/03/18/blue-hill-cc-new-owners/" target="_blank" rel="noreferrer">Blue Hill CC new owners</a>
+            <p class="muted">December 2015 transfer, debt retired, dues cut 30 percent, no-assessment guarantee, unanimous ratification, $6M 2012 clubhouse loan as debt origin (conflicts with buyer's account).</p>
+          </article>
+          <article class="source" id="src-crains">
+            <strong>5. Crain's Detroit Business, July 12, 2016 and later</strong>
+            <a href="https://www.crainsdetroit.com/article/20160712/NEWS/160719943/oakland-hills-membership-rejects-11-million-south-course-renovation" target="_blank" rel="noreferrer">Oakland Hills rejects $11M renovation</a>
+            <p class="muted">2016 rejection, subsequent 79 percent approval of roughly $12M plan, and the $104M clubhouse rebuild votes. With Detroit News, July 2018 and November 2023.</p>
+          </article>
+          <article class="source" id="src-concert">
+            <strong>6. Concert Golf Partners, published materials, 2016-2024</strong>
+            <a href="https://concertgolfpartners.com/resources/signs-your-club-may-want-to-recapitalize/" target="_blank" rel="noreferrer">Signs your club may want to recapitalize; case studies</a>
+            <p class="muted">Company-reported. Recapitalization model, screening criteria (debt blocking reinvestment, recurring assessments), $4M+ South Florida capital program, granular club financials used only with labels.</p>
+          </article>
+          <article class="source" id="src-prnews">
+            <strong>7. PR Newswire (Concert Golf release), June 2023</strong>
+            <a href="https://www.prnewswire.com/news-releases/wisconsin-club-members-vote-97-in-favor-of-concert-golf-partners-carveout-of-historic-wisconsin-country-club-301844307.html" target="_blank" rel="noreferrer">Wisconsin Club members vote 97% in favor</a>
+            <p class="muted">Company-reported. Source of the 97 percent figure and the pickleball capital plans; deal terms independently confirmed by BizTimes.</p>
+          </article>
+          <article class="source" id="src-gga">
+            <strong>8. GGA Partners, January 23, 2025</strong>
+            <a href="https://ggapartners.com/2025/01/creating-your-forward-looking-capital-plan/" target="_blank" rel="noreferrer">Creating your forward-looking capital plan</a>
+            <p class="muted">Funding hierarchy: dues pay the bills; joining fees fund capital replacements; shortfalls covered by debt and/or capital calls. Quoted per the primary text.</p>
+          </article>
+          <article class="source" id="src-cb-dep">
+            <strong>9. Club Benchmarking, March 31, 2022</strong>
+            <a href="https://www.clubbenchmarking.com/blog/depreciation" target="_blank" rel="noreferrer">Depreciation and capital income</a>
+            <p class="muted">Capital income must at least equal depreciation expense before aspirational projects are considered.</p>
+          </article>
+          <article class="source" id="src-cb-kpi">
+            <strong>10. Club Benchmarking, June 2015 and Capital KPIs (undated)</strong>
+            <a href="https://www.clubbenchmarking.com/blog/capital-kpis" target="_blank" rel="noreferrer">Capital KPIs; Net Capital Available Ratio</a>
+            <p class="muted">12 percent sustainability floor, 11 percent fiscal 2014 median; newer guidance indicating a roughly 17 percent target (date needs confirmation before board use).</p>
+          </article>
+          <article class="source" id="src-fees">
+            <strong>11. Fee and dues escalation reporting, 2024-2025</strong>
+            <a href="https://frontofficesports.com/country-club-initiation-fees-soar-with-golfs-popularity/" target="_blank" rel="noreferrer">Front Office Sports (Aug 2025); Fortune (Aug 2024); Golf.com (late 2025)</a>
+            <p class="muted">Median initiation $29K (2019) to $50K (2022) per Club Benchmarking via FOS; La Gorce $1M and Shell Bay $1.4M elite anecdotes per Fortune; dues +9% in 2022-23 easing to a 5% "new normal" and waitlist share 49% (2022) to 45% (2025) per Club Benchmarking via Golf.com. A C+RB-attributed series differs on the 2019 base ($25K) and puts 2024 waitlists at 51% vs 25% in 2019; cited separately where used.</p>
+          </article>
+          <article class="source" id="src-gga2024">
+            <strong>13. GGA Partners with CMAA, August 2024</strong>
+            <a href="https://ggapartners.com/wp-content/uploads/post/club-leaders-perspective-2024/19924/2024/09/2024-Club-Leaders-Perspective-Report-FINAL.pdf" target="_blank" rel="noreferrer">Club Leaders' Perspective Report 2024</a>
+            <p class="muted">Initiation +8.7% avg (avg $58K, median $34K); operating dues +6.2%; capital dues +12.5% planned; 49% of leaders report the club at capacity; pickleball #2 over-capacity amenity (41%) and a top planned capital project (28%). With the GGA/NCA board study reported by First Call, Nov 2025 (funding methods, reserve-study and master-plan discipline gaps).</p>
+          </article>
+          <article class="source" id="src-racquets">
+            <strong>14. Racquets programming and monetization, 2025</strong>
+            <a href="https://clubandresortbusiness.com/south-floridas-turnberry-isle-country-club-unveils-new-racquet-club-for-pickleball-and-padel/" target="_blank" rel="noreferrer">Club + Resort Business (Dec 2025); BoardRoom Magazine (2025)</a>
+            <p class="muted">Turnberry Isle: 3 pickleball + 2 padel, paid pre-booked access ($40/90 min, $15/hr guests, $35-$65 lessons). BoardRoom: 19.8M US pickleball players in 2024 (+46% YoY), one tennis court converts to four pickleball courts, and retrofitting without a programming strategy is a common capital planning misstep.</p>
+          </article>
+          <article class="source" id="src-vone">
+            <strong>12. Companion resource</strong>
+            <a href="./index.html" target="_blank" rel="noreferrer">The Capital Case for Racquet Sports at Private Clubs</a>
+            <p class="muted">The market-thesis companion: club sector capital markets context (KSL/Invited, Bain/Concert), participation data, underwriting framework, and the member-value sensitivity model.</p>
+          </article>
+        </div>
+
+        <div class="note forest" style="margin-top:26px;">
+          <strong>Commissioning the club-specific version.</strong> This primer generalizes. The useful next step is club-specific: a capital health readout from your financials, a demand study for any amenity under consideration, and a phased concept plan with a budget range. To commission that work: Brooks Wiley, Head of Strategic Partnerships, PICKLETILE, 737-248-7077. PICKLETILE is the Official Court Builder of USA Pickleball and a turnkey design-build partner for racquet sports facilities.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>PICKLETILE.</strong> Turnkey court design-build and Official Court Builder of USA Pickleball. Prepared by Brooks Wiley, Head of Strategic Partnerships, 737-248-7077.</p>
+      <p>Prepared as a private club capital planning resource. This is not a formal proposal, valuation, legal opinion, or investment analysis. Models are illustrative and must be run with club-specific data. Sources labeled company-reported come from interested parties and are presented as such.</p>
+    </div>
+  </footer>
+
+  <script>
+    var dollars = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    function num(id) { var v = Number(document.getElementById(id).value); return isNaN(v) || v < 0 ? 0 : v; }
+
+    function updateM1() {
+      var debt = num("m1debt"), backlog = num("m1backlog");
+      var members = Math.max(1, num("m1members")), years = Math.max(1, num("m1years"));
+      var months = years * 12;
+      document.getElementById("m1buyer").textContent = dollars.format(debt + backlog);
+      document.getElementById("m1monthly").textContent = dollars.format(Math.round(backlog / members / months));
+      document.getElementById("m1monthlyAll").textContent = dollars.format(Math.round((backlog + debt) / members / months));
+    }
+
+    function updateM2() {
+      var rev = Math.max(1, num("m2rev")), cap = num("m2capinc"), dep = Math.max(1, num("m2dep")), yrs = Math.max(1, num("m2yrs"));
+      var ratio = cap / dep;
+      var nac = (cap / rev) * 100;
+      var gap = Math.max(0, dep - cap);
+      document.getElementById("m2ratio").textContent = ratio.toFixed(2) + "x";
+      document.getElementById("m2nac").textContent = nac.toFixed(1) + "%";
+      document.getElementById("m2gap").textContent = dollars.format(gap);
+      document.getElementById("m2backlog").textContent = dollars.format(gap * yrs);
+      var v = document.getElementById("m2verdict");
+      if (ratio >= 1.0) { v.textContent = "Investing"; v.style.background = "#1f5a42"; }
+      else if (ratio >= 0.7) { v.textContent = "Coasting"; v.style.background = "#a97a2c"; }
+      else { v.textContent = "Starved"; v.style.background = "#9f5137"; }
+    }
+
+    function updateM3() {
+      var dues = num("m3dues"), exit = num("m3exitage");
+      var ageNow = num("m3agenow"), ageTarget = num("m3agetarget"), perYear = Math.max(0, num("m3newpery"));
+      var tenNow = Math.max(0, exit - ageNow), tenTarget = Math.max(0, exit - ageTarget);
+      var ltNow = dues * tenNow, ltTarget = dues * tenTarget;
+      document.getElementById("m3ltnow").textContent = dollars.format(ltNow);
+      document.getElementById("m3lttarget").textContent = dollars.format(ltTarget);
+      document.getElementById("m3diff").textContent = dollars.format(ltTarget - ltNow);
+      document.getElementById("m3yeardiff").textContent = dollars.format((ltTarget - ltNow) * perYear);
+    }
+
+    function updateAll() { updateM1(); updateM2(); updateM3(); }
+    document.querySelectorAll("input[type='number']").forEach(function (input) {
+      input.addEventListener("input", updateAll);
+    });
+
+    document.querySelectorAll("[data-copy]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var node = document.querySelector(button.dataset.copy);
+        if (!node) return;
+        var text = node.textContent.trim();
+        function done() {
+          var original = button.textContent;
+          button.textContent = "Copied";
+          window.setTimeout(function () { button.textContent = original; }, 1400);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+        } else { fallbackCopy(text); done(); }
+      });
+    });
+    function fallbackCopy(text) {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.left = "-9999px";
+      document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); document.body.removeChild(ta);
+    }
+
+    updateAll();
+  </script>
+</body>
+</html>
