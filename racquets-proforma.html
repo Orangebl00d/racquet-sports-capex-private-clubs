@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Programming Pro Forma for Private Club Racquets</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --ink: #18221e;
+      --soft-ink: #46534e;
+      --muted: #69746f;
+      --paper: #f6f4ed;
+      --white: #ffffff;
+      --line: #d8ded8;
+      --forest: #1f5a42;
+      --leaf: #3d765e;
+      --blue: #245089;
+      --gold: #a97a2c;
+      --rust: #9f5137;
+      --charcoal: #202626;
+      --wash: #edf2ec;
+      --shadow: 0 22px 60px rgba(24, 34, 30, 0.14);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.58;
+    }
+    a { color: inherit; text-decoration-color: rgba(31, 90, 66, 0.42); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--forest); }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero {
+      color: var(--white);
+      background: linear-gradient(120deg, #0e1a15 0%, #1f5a42 62%, #245089 135%);
+    }
+    .hero-inner { padding: 72px 0 54px; }
+    .hero h1 {
+      max-width: 950px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+      line-height: 1.03;
+      text-wrap: balance;
+    }
+    .hero p.sub {
+      max-width: 840px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.14rem;
+    }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .hero-meta a, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      padding: 9px 14px;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.12);
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button.light { color: var(--ink); border-color: var(--line); background: var(--white); }
+    .button.small { min-height: 36px; padding: 7px 11px; font-size: 0.88rem; }
+    section { padding: 64px 0; }
+    .band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--white); }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.55fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+    h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.9rem, 3vw, 2.7rem); line-height: 1.08; text-wrap: balance; }
+    h3 { margin: 0 0 10px; font-size: 1.08rem; line-height: 1.3; }
+    p { margin: 0 0 14px; }
+    .lead { color: var(--soft-ink); font-size: 1.04rem; }
+    .muted { color: var(--muted); }
+    ul.clean { margin: 0 0 14px; padding-left: 19px; }
+    ul.clean li { margin-bottom: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card, .calc-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(24, 34, 30, 0.03);
+    }
+    .card { grid-column: span 4; padding: 24px; }
+    .card.wide { grid-column: span 6; }
+    .card.full { grid-column: 1 / -1; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      margin: 0 6px 14px 0;
+      border-radius: 999px;
+      padding: 3px 10px;
+      color: var(--forest);
+      background: var(--wash);
+      font-size: 0.73rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin: 0 6px 14px 0;
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .badge.v-corr { background: var(--forest); }
+    .badge.v-illu { background: var(--muted); }
+    .calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.68fr); gap: 22px; align-items: start; }
+    .calc-panel { padding: 22px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    label { display: grid; gap: 6px; color: var(--soft-ink); font-size: 0.85rem; font-weight: 800; }
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 11px;
+      color: var(--ink);
+      background: var(--white);
+      font: inherit;
+    }
+    .result-list { display: grid; gap: 12px; margin-top: 16px; }
+    .result { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .result:last-child { border-bottom: 0; padding-bottom: 0; }
+    .result strong { font-family: Georgia, "Times New Roman", serif; font-size: 1.24rem; white-space: nowrap; }
+    .verdict {
+      display: inline-flex;
+      margin-top: 6px;
+      border-radius: 6px;
+      padding: 6px 14px;
+      color: var(--white);
+      background: var(--gold);
+      font-weight: 850;
+      font-size: 0.95rem;
+    }
+    .note { border-left: 4px solid var(--gold); padding: 14px 16px; border-radius: 0 8px 8px 0; color: #49391f; background: #fff8e8; margin: 0 0 14px; }
+    .note.forest { border-color: var(--forest); color: #1d3a2e; background: var(--wash); }
+    .footer { padding: 32px 0 48px; color: var(--muted); font-size: 0.88rem; }
+    .footer strong { color: var(--soft-ink); }
+    @media (max-width: 980px) {
+      .section-head, .calc { grid-template-columns: 1fr; }
+      .card, .card.wide { grid-column: 1 / -1; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 28px, 1160px); }
+      section { padding: 50px 0; }
+    }
+    @media print {
+      .hero-meta, .button { display: none; }
+      body { background: #fff; }
+      .hero { color: var(--ink); background: #fff; }
+      .hero-inner { padding: 36px 0 14px; }
+      .hero p.sub { color: var(--soft-ink); }
+      section { padding: 30px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap hero-inner">
+      <p class="eyebrow" style="color:#f4c873;">A working tool for racquets directors and GMs</p>
+      <h1>The Programming Pro Forma</h1>
+      <p class="sub">Ten private lessons a week at $70, across a 46-week season, is $32,200. Four six-player clinics at $30 a head is $33,120 more. Most finance committees have never seen those numbers on paper. This page turns a weekly racquets schedule into the annual figure a committee can underwrite, and it runs on your club's numbers.</p>
+      <div class="hero-meta">
+        <a href="./three-doors.html">The companion primer</a>
+        <button class="button light small" type="button" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="model">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">The Model</p>
+            <h2>Your schedule, priced.</h2>
+          </div>
+          <p class="lead"><span class="badge v-illu">Illustrative</span> Enter the program you would run in year one. Conservative beats impressive. The committee will stress-test whatever you bring, so bring the case that survives it.</p>
+        </div>
+
+        <div class="calc">
+          <div class="calc-panel">
+            <div class="form-grid">
+              <label>Weekly group clinics
+                <input id="pfClinicsWk" type="number" min="0" step="1" value="4">
+              </label>
+              <label>Players per clinic
+                <input id="pfClinicSize" type="number" min="0" step="1" value="6">
+              </label>
+              <label>Clinic price per player ($)
+                <input id="pfClinicFee" type="number" min="0" step="5" value="30">
+              </label>
+              <label>Private lessons per week
+                <input id="pfLessonsWk" type="number" min="0" step="1" value="10">
+              </label>
+              <label>Lesson rate ($ per hour)
+                <input id="pfLessonRate" type="number" min="0" step="5" value="70">
+              </label>
+              <label>Paid prime-time bookings per week
+                <input id="pfResWk" type="number" min="0" step="1" value="15">
+              </label>
+              <label>Rate per booking ($)
+                <input id="pfResRate" type="number" min="0" step="5" value="40">
+              </label>
+              <label>Guest fees collected per week ($)
+                <input id="pfGuestWk" type="number" min="0" step="5" value="225">
+              </label>
+              <label>Program weeks per year
+                <input id="pfWeeks" type="number" min="1" max="52" step="1" value="46">
+              </label>
+              <label>League, ladder, and event revenue per year ($)
+                <input id="pfLeagues" type="number" min="0" step="500" value="18000">
+              </label>
+              <label>Other program revenue per year ($)
+                <input id="pfOther" type="number" min="0" step="500" value="6000">
+              </label>
+              <label>Teaching staff share of instruction revenue (%)
+                <input id="pfShare" type="number" min="0" max="100" step="5" value="65">
+              </label>
+              <label>Annual operating costs ($)
+                <input id="pfOpex" type="number" min="0" step="1000" value="15000">
+              </label>
+              <label>Project budget, your quoted number ($)
+                <input id="pfBudget" type="number" min="0" step="10000" value="450000">
+              </label>
+            </div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.85rem;">Rate defaults follow Turnberry Isle's posted card: $40 bookings, $70-an-hour lessons, $15 guests, so fifteen guest visits is the $225 weekly line. The payout share, operating costs, and budget are placeholders. Every input should end up as your number.</p>
+          </div>
+          <aside class="calc-panel">
+            <h3>The annual number</h3>
+            <div class="result-list">
+              <div class="result">
+                <span>Gross annual program revenue</span>
+                <strong id="pfGross">$127,270</strong>
+              </div>
+              <div class="result">
+                <span>Paid to teaching staff</span>
+                <strong id="pfPayout">$42,458</strong>
+              </div>
+              <div class="result">
+                <span>Net annual contribution</span>
+                <strong id="pfNet">$69,812</strong>
+              </div>
+              <div class="result">
+                <span>Payback on the build</span>
+                <strong id="pfPayback">6.4 years</strong>
+              </div>
+              <div class="result">
+                <span>Ten-year net after repaying the build</span>
+                <strong id="pfTenYear">$248,120</strong>
+              </div>
+            </div>
+            <div class="verdict" id="pfVerdict">Programming repays the build in 6.4 years</div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.86rem;">This model is deliberately narrow. It excludes initiation fees, member retention, and the joining-age effect entirely. The cohort model in the companion primer prices those, and they are usually the bigger number.</p>
+          </aside>
+        </div>
+
+        <div class="grid" style="margin-top:26px;">
+          <article class="card wide">
+            <span class="badge v-corr">Corroborated</span>
+            <h3>The rate card that exists in the wild.</h3>
+            <p style="margin-bottom:0;">Turnberry Isle in Aventura opened three pickleball and two padel courts in December 2025 with paid, pre-booked access: $40 per 90-minute booking, $15 per hour for guests, lessons from $35 per half hour. Club + Resort Business and the operator's release, December 2025. A committee member who doubts members will pay for court time can be handed a working example instead of an argument.</p>
+          </article>
+          <article class="card wide">
+            <span class="tag">Champion checklist</span>
+            <h3>Taking the number to committee.</h3>
+            <ul class="clean" style="margin-bottom:0;">
+              <li>Run it twice. Present the conservative case and hold the base case in reserve. A committee that catches one padded number discounts all of them.</li>
+              <li>Staple the demand evidence to it: waitlist counts, clinic fill rates, booking logs. This model prices a schedule. Your utilization data is what proves the schedule fills.</li>
+              <li>Walk the GM through it before the meeting. No GM backs a number they first heard in the room.</li>
+              <li>A board funds a schedule, not a sport. The more of this page that is real bookings and posted rates, the shorter the meeting.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="note forest" style="margin-top:26px;">
+          <strong>The rest of the case.</strong> Programming is the operating leg. The board-level argument, the capital health diagnostic, and the cohort model that prices a younger joining cohort live in the companion primer, <a href="./three-doors.html">The Three Doors: Sell, Raise, or Reprice</a>. Text your draft schedule and quoted budget to Brooks Wiley, PICKLETILE, 737-248-7077, for a pressure-tested version before it goes in your packet.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>PICKLETILE.</strong> Turnkey court design-build and Official Court Builder of USA Pickleball. Prepared by Brooks Wiley, Head of Strategic Partnerships, 737-248-7077.</p>
+      <p>Prepared as a private club racquets planning tool. This is not a proposal, valuation, or revenue promise. The model is illustrative and must be run with club-specific data. Badge convention follows the companion primer: corroborated means confirmed by independent press or primary records, illustrative means a model to run with your numbers.</p>
+    </div>
+  </footer>
+
+  <script>
+    var dollars = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    function num(id) { var v = Number(document.getElementById(id).value); return isNaN(v) || v < 0 ? 0 : v; }
+
+    function updatePF() {
+      var weeks = Math.max(1, num("pfWeeks"));
+      var clinics = num("pfClinicsWk") * num("pfClinicSize") * num("pfClinicFee") * weeks;
+      var lessons = num("pfLessonsWk") * num("pfLessonRate") * weeks;
+      var bookings = num("pfResWk") * num("pfResRate") * weeks;
+      var guests = num("pfGuestWk") * weeks;
+      var gross = clinics + lessons + bookings + guests + num("pfLeagues") + num("pfOther");
+      var payout = (clinics + lessons) * Math.min(100, num("pfShare")) / 100;
+      var net = gross - payout - num("pfOpex");
+      var budget = num("pfBudget");
+
+      document.getElementById("pfGross").textContent = dollars.format(gross);
+      document.getElementById("pfPayout").textContent = dollars.format(payout);
+      document.getElementById("pfNet").textContent = dollars.format(net);
+      document.getElementById("pfTenYear").textContent = dollars.format(net * 10 - budget);
+
+      var paybackEl = document.getElementById("pfPayback");
+      var v = document.getElementById("pfVerdict");
+      if (budget <= 0) {
+        paybackEl.textContent = "no budget entered";
+        v.textContent = "Enter your quoted project budget";
+        v.style.background = "#69746f";
+      } else if (net <= 0) {
+        paybackEl.textContent = "not on programming alone";
+        v.textContent = "Negative contribution. Lead with the membership math.";
+        v.style.background = "#9f5137";
+      } else {
+        var pb = budget / net;
+        paybackEl.textContent = pb.toFixed(1) + " years";
+        if (pb <= 5) {
+          v.textContent = "Programming repays the build in " + pb.toFixed(1) + " years";
+          v.style.background = "#1f5a42";
+        } else if (pb <= 8) {
+          v.textContent = "Programming repays the build in " + pb.toFixed(1) + " years";
+          v.style.background = "#a97a2c";
+        } else {
+          v.textContent = "Programming repays the build in " + pb.toFixed(1) + " years. Pair it with the membership math.";
+          v.style.background = "#9f5137";
+        }
+      }
+    }
+
+    document.querySelectorAll("input[type='number']").forEach(function (input) {
+      input.addEventListener("input", updatePF);
+    });
+    updatePF();
+  </script>
+</body>
+</html>
