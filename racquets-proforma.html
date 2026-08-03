@@ -285,6 +285,49 @@
           </aside>
         </div>
 
+        <div class="section-head" style="margin-top:44px;">
+          <div>
+            <h2 style="font-size:clamp(1.5rem,2.2vw,2rem);">The cost of waiting.</h2>
+          </div>
+          <p class="lead"><span class="badge v-illu">Illustrative</span> Deferral reads as free because nothing gets invoiced. Price it anyway. The floor comes from your schedule math above. The ceiling depends on who joins while the courts stay unbuilt.</p>
+        </div>
+
+        <div class="calc">
+          <div class="calc-panel">
+            <div class="form-grid">
+              <label>Annual dues per household ($)
+                <input id="cwDues" type="number" min="0" step="1000" value="18000">
+              </label>
+              <label>Extra years of tenure if members join younger
+                <input id="cwYears" type="number" min="0" step="1" value="8">
+              </label>
+              <label>New member households per year
+                <input id="cwHouseholds" type="number" min="0" step="1" value="15">
+              </label>
+            </div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.85rem;">The tenure input compresses the primer's cohort model: a household joining at 50 instead of 58 pays dues for eight more years. Treat it as the assumption to measure at your club, not a fact. Dues and intake defaults follow the primer.</p>
+          </div>
+          <aside class="calc-panel">
+            <h3>What a year of deferral costs</h3>
+            <div class="result-list">
+              <div class="result">
+                <span>Foregone program net, one year</span>
+                <strong id="cwFloor">$69,812</strong>
+              </div>
+              <div class="result">
+                <span>The same number, per month in committee</span>
+                <strong id="cwMonth">$5,818</strong>
+              </div>
+              <div class="result">
+                <span>Foregone lifetime dues on one year's intake, if the build shifts joining age</span>
+                <strong id="cwCohort">$2,160,000</strong>
+              </div>
+            </div>
+            <div class="verdict" id="cwVerdict" style="background:#9f5137;">A year of waiting costs $69,812 before any membership math</div>
+            <p class="muted" style="margin:14px 0 0; font-size:0.86rem;">Lead with the floor. It is arithmetic on your own schedule and survives any committee. The cohort line is the argument for measuring applicant age, and it is usually the number that moves a board.</p>
+          </aside>
+        </div>
+
         <div class="grid" style="margin-top:26px;">
           <article class="card wide">
             <span class="badge v-corr">Corroborated</span>
@@ -360,6 +403,23 @@
           v.textContent = "Programming repays the build in " + pb.toFixed(1) + " years. Pair it with the membership math.";
           v.style.background = "#9f5137";
         }
+      }
+
+      var cohortCost = num("cwDues") * num("cwYears") * num("cwHouseholds");
+      document.getElementById("cwCohort").textContent = dollars.format(cohortCost);
+      var floorEl = document.getElementById("cwFloor");
+      var monthEl = document.getElementById("cwMonth");
+      var cw = document.getElementById("cwVerdict");
+      if (net > 0) {
+        floorEl.textContent = dollars.format(net);
+        monthEl.textContent = dollars.format(net / 12);
+        cw.textContent = "A year of waiting costs " + dollars.format(net) + " before any membership math";
+        cw.style.background = "#9f5137";
+      } else {
+        floorEl.textContent = dollars.format(0);
+        monthEl.textContent = dollars.format(0);
+        cw.textContent = "With negative program net, the waiting cost is the membership math";
+        cw.style.background = "#69746f";
       }
     }
 
